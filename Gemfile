@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'bootstrap-sass', '3.3.6'
 gem 'bcrypt', '3.1.11'
+gem 'jquery-easing-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 gem 'pg', '0.18.1', group: :production
