@@ -3,13 +3,13 @@
 one:
   name: MyString
   email: MyString
-  type: 
+  individualrole: 
   org: MyString
   dept: MyString
 
 two:
   name: MyString
   email: MyString
-  type: 
+  individualrole: 
   org: MyString
   dept: MyString
