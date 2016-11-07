@@ -8,12 +8,17 @@ class UsersController < ApplicationController
       @user = User.new
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  
   def create
-    @user = User.new(user_params)   
+    @user = User.new(user_params)
     if @user.save
       log_in @user
       flash[:success] = "Successfully registered!!"
-      redirect_to '/login'
+      redirect_to @user
       # Handle a successful save.
     else
       render 'new'
