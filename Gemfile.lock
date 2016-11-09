@@ -120,16 +120,8 @@ GEM
     multi_test (0.1.2)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-<<<<<<< HEAD
-=======
-      pkg-config (~> 1.1.7)
-    paperclip (5.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
->>>>>>> 08290aeff6355209fff50fb8fa296963d8f00732
+      paperclip (5.1.0)
+
     pg (0.18.1)
     public_suffix (2.0.4)
     rack (1.6.4)
@@ -241,8 +233,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-<<<<<<< HEAD
    1.13.1
-=======
-   1.13.6
->>>>>>> 08290aeff6355209fff50fb8fa296963d8f00732
