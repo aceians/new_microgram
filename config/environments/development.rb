@@ -7,8 +7,8 @@ config.action_mailer.default_url_options = { host: host}
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.gmail.com',
   :port           => 587,
-  :user_name      => 'byun7529@gmail.com',
-  :password       => 'quswornjs2',
+  :user_name      => 'Ynl1bjc1MjlAZ21haWwuY29tDQo=',
+  :password       => 'cXVzd29ybmpzMg==',
   :domain         => 'gmail.com',
   :authentication       => :plain,
   :enable_starttls_auto => true
