@@ -11,7 +11,7 @@ ActionMailer::Base.smtp_settings = {
   :password       => 'quswornjs2',
   :domain         => 'gmail.com',
   :authentication       => :plain,
-  :enable_starttls_auto => true
+  :enable_starttls_auto => true,
   :ssl => true
 }
   # Settings specified here will take precedence over those in config/application.rb.
