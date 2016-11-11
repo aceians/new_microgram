@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
+  INDIVIDUAL_ROLES = ['Student', 'Researcher']
   before_save   :downcase_email
   before_create :create_activation_digest
   before_save { self.email = email.downcase }
