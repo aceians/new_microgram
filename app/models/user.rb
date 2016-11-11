@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
     attr_accessor :remember_token, :activation_token, :reset_token
+    before_save   :downcase_email
     INDIVIDUAL_ROLES = ['Student', 'Researcher']
     before_create :create_activation_digest
     before_save { self.email = email.downcase }
@@ -23,9 +24,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
     
-  def User.new_token
-    SecureRandom.urlsafe_base64
-  end
   
   def remember
     self.remember_token = User.new_token
@@ -84,4 +82,8 @@ class User < ActiveRecord::Base
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
+    
+    def User.new_token
+    SecureRandom.urlsafe_base64
+  end
 end
