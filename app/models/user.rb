@@ -72,8 +72,13 @@ class User < ActiveRecord::Base
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
-  
+    
   private
+  
+      # Converts email to all lower-case.
+    def downcase_email
+      self.email = email.downcase
+    end
     def create_activation_digest
       # Create the token and digest.
       self.activation_token  = User.new_token
