@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -17,10 +16,9 @@ ActiveRecord::Schema.define(version: 20161108221222) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id", "created_at"], name: "index_uploads_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_uploads_on_user_id"
   end
-
-  add_index "uploads", ["user_id", "created_at"], name: "index_uploads_on_user_id_and_created_at"
-  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
