@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108221222) do
+ActiveRecord::Schema.define(version: 20161112212018) do
+
+  create_table "protecteds", force: :cascade do |t|
+    t.integer  "sub_id"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "sub_id"
+    t.string   "img_id"
+    t.string   "permission"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "sub_id"
+    t.string   "tag_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "uploads", force: :cascade do |t|
     t.integer  "user_id"
