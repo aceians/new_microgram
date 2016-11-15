@@ -1,0 +1,8 @@
+<li id="upload-<%= upload.id %>">
+  <%= link_to gravatar_for(upload.user, size: 50), upload.user %>
+  <span class="user"><%= link_to upload.user.name, upload.user %></span>
+  <span class="description"><%= upload.description %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(upload.created_at) %> ago.
+  </span>
+</li>

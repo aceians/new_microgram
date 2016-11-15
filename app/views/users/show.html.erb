@@ -13,18 +13,13 @@
       </div>
     </section>
   </aside>
+    <div class="col-md-8">
+    <% if @user.uploads.any? %>
+      <h3>Images you have uploaded (<%= @user.uploads.count %>)</h3>
+      <ol class="uploads">
+        <%= render @uploads%>
+      </ol>
+      <%= will_paginate @uploads %>
+    <% end %>
+  </div>
 </div>
-
-<center> 
-<table style="width:100%">
-  <tr>
-    <th>Name</th>
-    <th>Email</th> 
-    <th>Department</th>
-  </tr>
-  <tr>
-    <td><%= @user.name %></td>
-    <td><%= @user.email %></td> 
-    <td><%= @user.dept %></td>
-  </tr>
-</center>

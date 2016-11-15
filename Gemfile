@@ -15,7 +15,9 @@ end
 group :production do
 gem 'pg', '0.18.1'
 end
-
+gem 'faker',          '1.6.6'
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
