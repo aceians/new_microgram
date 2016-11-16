@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115225334) do
+ActiveRecord::Schema.define(version: 20161116034241) do
 
   create_table "protecteds", force: :cascade do |t|
     t.integer  "sub_id"
@@ -40,8 +40,12 @@ ActiveRecord::Schema.define(version: 20161115225334) do
     t.integer  "user_id"
     t.string   "attachment"
     t.string   "permission"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["user_id", "created_at"], name: "index_uploads_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_uploads_on_user_id"
   end
