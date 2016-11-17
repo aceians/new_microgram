@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   
   resources :uploads
   
-  match ':controller(/:action(/:id(.:format)))', :via => :all
+#   match ':controller(/:action(/:id(.:format)))', :via => :all
 
 end
