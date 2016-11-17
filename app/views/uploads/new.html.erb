@@ -31,19 +31,18 @@
     
         <br>
         <div id="content">
-            <%= form_for @upload, html: { multipart: true, class: "dropzone", id: "my-dropzone" } do |f| %>
+            <%= form_for (@upload), html: { multipart: true, class: "dropzone", id: "my-dropzone" } do |f| %>
             
                 <div class="dz-message needsclick">
                     <h3> Drop microstructure(s) here</h3> 
                     or <strong>Click</strong> to upload
                 </div>
-                    
-            
+
                 <div class="fallback">
                     <%= f.file_field :image %>
                     <!%= f.submit "Upload the image" %>
                 </div>
-            <% end %>
+                
             </div>
         <br>
         <br>
@@ -52,7 +51,7 @@
         <div class="container">
           <form class="form-horizontal">
             <div class="form-group">
-              <label class="control-label col-lg-1" for="tag" align="left">Tags:</label>
+            <label class="control-label col-lg-1" for="tag" align="left">Tags:</label>
               <div class="col-lg-2">
                 <input type="tag" class="form-control" id="tag" placeholder="Enter a tag"></input>
               </div>
@@ -60,31 +59,39 @@
                 <input type="tag" class="form-control" id="tag" placeholder="Enter a tag"></input>
               </div>
              <div><span class="glyphicon glyphicon-plus-sign"></span></div>
-            </div>
+            </div> 
+                
+
+            
             <div class="form-group">
               <label class="control-label col-lg-1" for="description">Description:</label>
               <div class="col-lg-7">
-                <textarea type="desc" class="form-control" id="desc" placeholder="Enter description of microstructure(s)" rows=5></textarea>
+                <%= f.text_area :description, placeholder: "Enter description of microstructure(s)", :row => 5 %> 
               </div>
-              
+
             </div>
+            <br>
+            <br>
+            <br>
+
             <div class="form-group">
               <label class="control-label col-lg-1" for="url">URL:</label>
               <div class="col-lg-7">
                 <input type="url" class="form-control" id="url" placeholder="Enter link to research"></input>
               </div>
             </div>
+            
             <div class="form-group">
               <div class="col-lg-offset-1 col-lg-4">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <br>
+                <button type="submit" "POST" class="btn btn-primary">Submit</button>
               </div>
             </div>
         </div>
-
+            <% end %>
         </div>
        </div>
      </div>
 </body>
-    
-    
+
 </html>

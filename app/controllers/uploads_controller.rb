@@ -1,5 +1,6 @@
 class UploadsController < ApplicationController
-  before_action :set_upload, only: [:show, :edit, :update, :destroy]
+  #before_action :logged_in_user, only: [:create, :destroy, :show]
+  # before_action :set_upload, only: [:show, :edit, :update, :destroy]
 
   # GET /uploads
   # GET /uploads.json
@@ -10,6 +11,7 @@ class UploadsController < ApplicationController
   # GET /uploads/1
   # GET /uploads/1.json
   def show
+      @upload = Upload.find(params[:id])
   end
 
   # GET /uploads/new
@@ -24,18 +26,24 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = Upload.new(upload_params)
-
-    respond_to do |format|
-      if @upload.save
-        format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
-        format.json { render :show, status: :created, location: @upload }
-      else
-        format.html { render :new }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
-      end
+    @upload = current_user.uploads.build(upload_params)
+    if @upload.save
+      flash[:success] = "Upload was successfully created!"
+      redirect_to @upload
+    else
+      render 'static_pages/home'
     end
   end
+    #respond_to do |format|
+    #  if @upload.save
+    #    format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
+    #    format.json { render :show, status: :created, location: @upload }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @upload.errors, status: :unprocessable_entity }
+    #  end
+    #end
+
 
   # PATCH/PUT /uploads/1
   # PATCH/PUT /uploads/1.json
@@ -60,15 +68,11 @@ class UploadsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_upload
-      @upload = Upload.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def upload_params
-      params.require(:upload).permit(:user_id)
+      params.require(:upload).permit(:description, :image)
     end
+  
 end

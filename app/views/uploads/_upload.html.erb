@@ -1,0 +1,8 @@
+<li id="upload-<%= upload.id %>">
+  <span class="user"><%= link_to upload.user.name, upload.user %></span>
+  <span class="image"><%= image_tag upload.image(:small) %></span>
+  <span class="description"><%= upload.description %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(upload.created_at) %> ago.
+  </span>
+</li>

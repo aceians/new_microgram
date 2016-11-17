@@ -74,6 +74,11 @@
                         <% end%>
                     </li>
                     <li>
+                        <% if logged_in? %>
+                            <%= link_to "Storage", uploads_path %>
+                        <% end %>
+                    </li>
+                    <li>
                         <a class="signup" href="/signup">Sign up</a>
                     </li>
                 </ul>
