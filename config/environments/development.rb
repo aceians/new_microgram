@@ -17,7 +17,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
-  host = 'my-project-byoun7529.c9users.io'
+  host = 'microgram-savinay.c9users.io'
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   
 
