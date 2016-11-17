@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SubmissionTest < ActiveSupport::TestCase
+class ProtectionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

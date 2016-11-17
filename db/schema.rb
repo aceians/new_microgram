@@ -10,35 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116034241) do
+ActiveRecord::Schema.define(version: 20161117150303) do
 
-  create_table "protecteds", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "email"
+  create_table "protections", force: :cascade do |t|
+    t.string   "subid"
+    t.string   "sharedid"
+    t.integer  "upload_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "submissions", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "img_id"
-    t.string   "permission"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_protections_on_upload_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "tag_info"
+    t.string   "subid"
+    t.string   "tagname"
+    t.integer  "upload_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_tags_on_upload_id"
   end
 
   create_table "uploads", force: :cascade do |t|
     t.text     "description"
-    t.integer  "user_id"
-    t.string   "attachment"
     t.string   "permission"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -46,7 +39,11 @@ ActiveRecord::Schema.define(version: 20161116034241) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.index ["user_id", "created_at"], name: "index_uploads_on_user_id_and_created_at"
+    t.string   "imageid"
+    t.string   "subid"
+    t.string   "url"
+    t.integer  "user_id"
+    t.index ["created_at"], name: "index_uploads_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_uploads_on_user_id"
   end
 
