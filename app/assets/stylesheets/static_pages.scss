@@ -14,6 +14,18 @@ $font_1: Copperplate Gothic Light;
 $font_2: fantasy;
 $font_3: FontAwesome;
 
+.paragraph {
+	font-family:"MuseoSlabRegular", serif;
+	font-size:23.5px;
+	line-height:30px;
+}
+
+.paragraph_head {
+	font-family: cabin, oswald, arial;
+	font-size: 40px;
+}
+
+
 .login {
 	font-size: 1.2em;
 	float: right;
@@ -23,6 +35,7 @@ $font_3: FontAwesome;
 	background-color: $black;
 }
 .logo {
+	width:100%;
 	margin: 0 auto;
 	align-items: center;
 	text-align: center;

@@ -1,0 +1,8 @@
+class Image < ApplicationRecord
+  belongs_to :upload
+  has_attached_file :image, styles: { small: "80x80", med: "500x500", large: "700x700" }
+  #validates :image, :attachment_content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]}
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_presence :image
+  validates_attachment_size :image, :less_than => 10.megabytes
+end

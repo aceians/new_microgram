@@ -17,22 +17,27 @@ class UploadsController < ApplicationController
   # GET /uploads/new
   def new
     @upload = Upload.new
+    3.times {@upload.images.build}
   end
 
   # GET /uploads/1/edit
   def edit
+    @upload = Upload.new
+    3.times {@upload.images.build}
   end
 
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = current_user.uploads.build(upload_params)
+  @upload = current_user.uploads.build(upload_params)
     if @upload.save
       flash[:success] = "Upload was successfully created!"
       redirect_to @upload
     else
       render 'static_pages/home'
     end
+
+  
   end
     #respond_to do |format|
     #  if @upload.save
@@ -48,15 +53,7 @@ class UploadsController < ApplicationController
   # PATCH/PUT /uploads/1
   # PATCH/PUT /uploads/1.json
   def update
-    respond_to do |format|
-      if @upload.update(upload_params)
-        format.html { redirect_to @upload, notice: 'Upload was successfully updated.' }
-        format.json { render :show, status: :ok, location: @upload }
-      else
-        format.html { render :edit }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
-      end
-    end
+
   end
 
   # DELETE /uploads/1
@@ -72,7 +69,7 @@ class UploadsController < ApplicationController
   private
 
     def upload_params
-      params.require(:upload).permit(:description, :image)
+      params.require(:upload).permit(:description, :url, :permission, images_attributes: [:image])
     end
   
 end
