@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <br>
+    <br>
+    
+    <div class="container-fluid"  style="padding-left: 0px; padding-right: 0px;">
+      <div class="row">
+        <nav class="col-lg-3">
+            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="0">
+            <li ><%= link_to "New Submission",   new_upload_path %></li>
+            <li><%= link_to "My Submissions",   new_upload_path %></li>
+            <li><%= link_to "Shared with me",   new_upload_path %></li>
+            <li class="active"><%= link_to "Search Microgram", search_index_url %></li>
+            </ul>
+        </nav>
+        
+        <div class="col-lg-9">
+          <div class="row">
+                <div class = "text-center">
+        		<h2>Search The World of Microgram</h2></div>
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Search Microgram" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <% @uploads.each do |upload| %>
+                  
+                    <p><%= upload.id %></p>
+                    <p><%= upload.description %></p>
+                    <%= image_tag upload.image(:large) %>
+                    
+                  
+                <% end %>
+            
+    	</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <br>
+    <br>
+    
+</body>
