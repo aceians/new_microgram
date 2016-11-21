@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20161119180249) do
   end
 
   create_table "protections", force: :cascade do |t|
-    t.string   "subid"
     t.string   "sharedid"
     t.integer  "upload_id"
     t.datetime "created_at", null: false
@@ -33,7 +32,6 @@ ActiveRecord::Schema.define(version: 20161119180249) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "subid"
     t.string   "tagname"
     t.integer  "upload_id"
     t.datetime "created_at", null: false

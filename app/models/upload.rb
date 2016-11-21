@@ -4,6 +4,7 @@ class Upload < ActiveRecord::Base
   has_many :tags, :dependent => :destroy
   has_many :protections, :dependent => :destroy
   accepts_nested_attributes_for :images , :allow_destroy => true,  :reject_if => lambda { |a| a[:image].blank? } 
+  accepts_nested_attributes_for :tags, :reject_if => lambda { |a| a[:tagname].blank? }, :allow_destroy => true
   
   def images_array=(array)
  array.each do |file|
@@ -12,7 +13,7 @@ class Upload < ActiveRecord::Base
  end
  
   PERMISSIONS = ['Public', 'Private', 'Protected']
-  accepts_nested_attributes_for :tags, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
+
 
   
   default_scope -> { order(created_at: :desc) }
