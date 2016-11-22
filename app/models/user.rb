@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_many :uploads, dependent: :destroy
     attr_accessor :remember_token, :activation_token, :reset_token
     INDIVIDUAL_ROLES = ['Student', 'Researcher']
     before_create :create_activation_digest
@@ -8,9 +9,9 @@ class User < ActiveRecord::Base
     validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-    validates :individualrole,  presence: true
-    validates :org,  presence: true
-    validates :dept,  presence: true
+    #validates :individualrole,   presence: true
+    #validates :org,   presence: true
+    #validates :dept,  presence: true
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }
     
