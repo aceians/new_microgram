@@ -1,9 +1,28 @@
-<p id="notice"><%= notice %></p>
+<h1>This is what you just uploaded</h1>
+<br>
+<% count = 1 %>
+<% @upload.images.all.each do |a| %>
+<h4>Image <%= "#{count}" %> <%= image_tag a.image(:small) %></h4>
+<% count = count + 1 %>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @upload.user %>
-</p>
+<% count = 1 %>
+<br>
 
-<%= link_to 'Edit', edit_upload_path(@upload) %> |
-<%= link_to 'Back', uploads_path %>
+<h4> Permission : <%= label_tag @upload.permission %></h4>
+<br>
+<% @upload.tags.all.each do |b| %>
+  <h4>Tag<%= "#{count}" %>: <%= label_tag b.tagname %></h4>
+  <% count = count + 1 %>
+<% end %>
+
+<% count = 1 %>
+<br>
+
+<% @upload.protections.all.each do |c| %>
+  <h4>Only shared to : <%= label_tag c.sharedid %></h4>
+<% end %>
+
+<br>
+<h4> Description : <%= label_tag @upload.description %> </h4>
+
