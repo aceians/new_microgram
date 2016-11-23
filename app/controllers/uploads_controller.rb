@@ -12,7 +12,7 @@ class UploadsController < ApplicationController
     @upload = Upload.new
     3.times {@upload.images.build}
     3.times {@upload.tags.build}
-
+    2.times {@upload.protections.build}
   end
 
   def edit
@@ -23,6 +23,7 @@ class UploadsController < ApplicationController
 
   def create
   @upload = current_user.uploads.build(upload_params)
+  #@sharedid = current_user.uploads.build(protections_params) # for shared users
     if @upload.save
       flash[:success] = "Upload was successfully created!"
       redirect_to @upload
@@ -46,7 +47,12 @@ class UploadsController < ApplicationController
   private
 
     def upload_params
-      params.require(:upload).permit(:description, :url, :permission, images_attributes: [:image], tags_attributes: [:tagname])
+      params.require(:upload).permit(:description, :permission, :url, 
+                     images_attributes: [:image], tags_attributes: [:tagname], protections_attributes: [:sharedid])
+    end
+    
+    def protections_params
+
     end
   
 end

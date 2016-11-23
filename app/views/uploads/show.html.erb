@@ -6,13 +6,21 @@
 <% count = count + 1 %>
 <% end %>
 
-<% count = 0 %>
+<% count = 1 %>
+<br>
 
 <h4> Permission : <%= label_tag @upload.permission %></h4>
 <br>
 <% @upload.tags.all.each do |b| %>
   <h4>Tag<%= "#{count}" %>: <%= label_tag b.tagname %></h4>
   <% count = count + 1 %>
+<% end %>
+
+<% count = 1 %>
+<br>
+
+<% @upload.protections.all.each do |c| %>
+  <h4>Only shared to : <%= label_tag c.sharedid %></h4>
 <% end %>
 
 <br>
