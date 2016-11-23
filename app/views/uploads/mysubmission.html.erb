@@ -1,0 +1,19 @@
+<h1>This is what you have uploaded so far.</h1>
+<br>
+<% count = 1 %>
+
+<% @all_submission.each do |a| %>
+<h4>Submission <%= "#{count}" %> <%= label_tag a.description %></h4>
+
+    <% @all_submission.find(count).images.all.each do |img| %>
+    <h4>Image <%= image_tag img.image(:small) %></h4>
+    <% end %>
+    
+    <% @all_submission.find(count).tags.all.each do |t| %>
+    <h4>Tags <%= label_tag t.tagname %></h4>
+    <% end %>
+    
+    <br>
+    <br>
+<% count = count + 1 %>
+<% end %>

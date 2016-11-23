@@ -44,6 +44,11 @@ class UploadsController < ApplicationController
     end
   end
   
+  def mysubmission
+    @all_submission = current_user.uploads.all
+  end
+  
+  
   private
 
     def upload_params
