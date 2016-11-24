@@ -1,0 +1,16 @@
+<h1>This is the images that are shared with you.</h1>
+<br>
+    <% count = 1 %>
+    <% if @shared == 0 %>
+        <h3> There are no images shared with you! </h3>
+    <% else %>
+        <h3> These are the images shared with you! </h3> <br>
+        <% @shared.each do |a|%>
+            <% user = Upload.find(a).user_id %>
+            <h4><p>below image(s) belong(s) to : <%= User.find(user).email %></p></h4>
+            <% Upload.find(a).images.each do |b| %>
+                 image <%= "#{count}" %><%= image_tag b.image(:small)%>
+                 <% count = count +1 %>
+            <% end %>
+        <% end %>
+    <% end %>

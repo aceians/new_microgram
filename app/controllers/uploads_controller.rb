@@ -48,6 +48,20 @@ class UploadsController < ApplicationController
     @all_submission = current_user.uploads.all
   end
   
+  def sharedToMe
+    data = Array.new
+    data = Protection.pluck(:sharedid,:upload_id)
+
+    previous_upid = 0
+    @shared = Array.new
+    data.each do |(email, upid)|
+      if email == current_user.email && previous_upid != upid
+        @shared << upid
+        previous_upid = upid
+      end
+    end
+
+  end
   
   private
 

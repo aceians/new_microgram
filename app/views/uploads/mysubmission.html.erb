@@ -1,19 +1,46 @@
 <h1>This is what you have uploaded so far.</h1>
 <br>
 <% count = 1 %>
+<% s_count = 1 %>
+<% eachone = Array.new %>
+<% eachone= @all_submission.ids %>
 
-<% @all_submission.each do |a| %>
-<h4>Submission <%= "#{count}" %> <%= label_tag a.description %></h4>
+<% eachone.each do |a| %>
+<h2><strong>Submission<%= "#{count}" %></strong></h2>  
 
-    <% @all_submission.find(count).images.all.each do |img| %>
-    <h4>Image <%= image_tag img.image(:small) %></h4>
+
+    <h3>Images :</h3>
+    <% @all_submission.find(a).images.each do |img| %>
+    Image <%= "#{s_count}" %><%= image_tag img.image(:small) %>
+    <% s_count = s_count + 1 %>
+    <% end %>
+    <br>
+
+    <h3>Description :</h3>
+    <%= label_tag @all_submission.find(a).description %>
+    <% s_count = 1 %>
+
+    <h3>Tags :</h3>    
+    <% @all_submission.find(a).tags.each do |t| %>
+    Tags <%= "#{s_count}" %> : <%= label_tag t.tagname %></h4>,
+    <% s_count = s_count + 1 %>
+    <% end %>
+    <br>
+    <% s_count = 1 %>
+    
+    <h3>Permission :</h3>
+    <%= label_tag @all_submission.find(a).permission %>
+    
+
+    <br>
+    
+    <h3>Shared to :</h3>
+    <br>
+    <% @all_submission.find(a).protections.each do |shared| %>
+    <%= "#{s_count}" %> : <%= label_tag shared.sharedid %></h4>,
+    <% s_count = s_count + 1 %>
     <% end %>
     
-    <% @all_submission.find(count).tags.all.each do |t| %>
-    <h4>Tags <%= label_tag t.tagname %></h4>
-    <% end %>
-    
-    <br>
-    <br>
-<% count = count + 1 %>
+    <% s_count = 1 %>
+    <% count = count + 1 %>
 <% end %>
