@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'uploads_test/new'
+
   root 'static_pages#home'
   get 'password_resets/new'
 
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :uploads
   
+  
+  resources :uploads_test
 #   match ':controller(/:action(/:id(.:format)))', :via => :all
 
 end
