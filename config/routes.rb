@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-    root 'welcome#home'
+
+  root 'welcome#home'
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   get   '/uploads/test', to: 'uploads#test'
   get   '/images', to: 'uploads#index'
   post  '/images', to: 'uploads#create'
+
 
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
@@ -21,6 +23,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :uploads
-  
 
 end

@@ -15,6 +15,11 @@ class UploadsController < ApplicationController
     3.times {@upload.tags.build}
     2.times {@upload.protections.build}
   end
+  
+  def test
+    @upload = Upload.new
+    #@upload.images.build
+  end
 
   def edit
     @upload = Upload.new
@@ -33,6 +38,8 @@ class UploadsController < ApplicationController
   end
 
   end
+  
+
 
 
   def update
@@ -66,10 +73,7 @@ class UploadsController < ApplicationController
 
   end
   
-  def test
-    @upload = Upload.new
-    #@upload.images.build
-  end
+
   
   private
   
