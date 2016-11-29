@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <title>DropzoneRails</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    
+</head>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%= form_for(@upload, html: { multipart: true, class: "dropzone"}) do |f|  %>
+  <div class="fallback">
+      <%= f.fields_for :images_attributes do |temp| %>
+        <%= temp.file_field :image %>
+      <% end %>
+  </div>
+<% end %>

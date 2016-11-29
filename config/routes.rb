@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-    root 'static_pages#home'
+    root 'welcome#home'
   get 'password_resets/new'
 
   get 'password_resets/edit'
   
-get   '/uploads/mysubmission', to: 'uploads#mysubmission'
+  get   '/uploads/mysubmission', to: 'uploads#mysubmission'
   get   '/uploads/sharedtome', to: 'uploads#sharedToMe'
+  get   '/uploads/test', to: 'uploads#test'
+  get   '/images', to: 'uploads#index'
+  post  '/images', to: 'uploads#create'
 
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'

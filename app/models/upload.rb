@@ -7,11 +7,6 @@ class Upload < ActiveRecord::Base
   accepts_nested_attributes_for :tags, :reject_if => lambda { |a| a[:tagname].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :protections, :reject_if => lambda { |a| a[:sharedid].blank? }, :allow_destroy => true
   
-  def images_array=(array)
- array.each do |file|
- images.build(:image => file)
- end
- end
  
   PERMISSIONS = ['Public', 'Private', 'Protected']
 

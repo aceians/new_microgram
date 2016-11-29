@@ -35,7 +35,7 @@
         <%= f.collection_select :permission, Upload::PERMISSIONS, :to_s, :to_s, 
          :include_blank => true, :selected => 'Private', class: 'form-control' %>
          
-        <%= f.label :urs, "URL" %>      
+        <%= f.label :url, "URL" %>      
         <%= f.url_field :url, class: 'form-control' %>
 
 

@@ -1,4 +1,5 @@
 class UploadsController < ApplicationController
+  before_action :logged_in_user
 
   def index
     @uploads = Upload.all
@@ -22,15 +23,17 @@ class UploadsController < ApplicationController
 
 
   def create
-  @upload = current_user.uploads.build(upload_params)
-  #@sharedid = current_user.uploads.build(protections_params) # for shared users
-    if @upload.save
-      flash[:success] = "Upload was successfully created!"
-      redirect_to @upload
-    else
-      render 'static_pages/home'
-    end
+  #@upload = current_user.uploads.build(upload_params)
+  # wrap_parameters format: [:json]
+  @upload = current_user.uploads.new(upload_params)
+  if @upload.save
+      # render json: { message: "success" }, :status => 200
+  else
+      render json: { error: @upload.errors.full_messages.join(',')}, :status => 400
   end
+
+  end
+
 
   def update
 
@@ -63,15 +66,38 @@ class UploadsController < ApplicationController
 
   end
   
+  def test
+    @upload = Upload.new
+    #@upload.images.build
+  end
+  
   private
-
+  
     def upload_params
-      params.require(:upload).permit(:description, :permission, :url, 
-                     images_attributes: [:image], tags_attributes: [:tagname], protections_attributes: [:sharedid])
+      params.require(:upload).permit(:description, :permission, :url, images_attributes: [:image] ,
+                    tags_attributes: [:tagname], protections_attributes: [:sharedid])
+    end
+
+    # def upload_params
+    #   params.require(:upload).permit(:description, :permission, :url, images_attributes: [:image],
+    #                 tags_attributes: [:tagname], protections_attributes: [:sharedid])
+    # end
+    
+  #   def parameters
+  #   params.respond_to?(:permit) ?
+  #       params.require(:picture).permit(:identifier => [ :name ]) :
+  #       params[:picture].slice(:identifier => [ :name ]) rescue nil
+  # end
+    
+    def images_params
+      params.require(:upload).permit(images_attributes: [:image])
     end
     
-    def protections_params
-
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
     end
   
 end
