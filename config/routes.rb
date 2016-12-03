@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-    root 'static_pages#home'
+
+  root 'welcome#home'
   get 'password_resets/new'
 
   get 'password_resets/edit'
+  
+  get   '/uploads/mysubmission', to: 'uploads#mysubmission'
+  get   '/uploads/sharedtome', to: 'uploads#sharedToMe'
+  get   '/uploads/search', to: 'uploads#search'
+  post  '/uploads/search', to: 'uploads#search'
+
 
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
@@ -11,10 +18,9 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  
-  resources :uploads
-  
-  
+  resources :uploads, only: [:new, :create, :update, :destroy, :show, :index]
+
 end

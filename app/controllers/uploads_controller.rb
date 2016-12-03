@@ -1,58 +1,52 @@
 class UploadsController < ApplicationController
-  before_action :set_upload, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  after_filter "save_my_previous_url", only: [:new]
 
-  # GET /uploads
-  # GET /uploads.json
+  def save_my_previous_url
+    # session[:previous_url] is a Rails built-in variable to save last url.
+    session[:my_previous_url] = URI(request.referer || '').path
+  end
+
+  
   def index
     @uploads = Upload.all
   end
 
-  # GET /uploads/1
-  # GET /uploads/1.json
   def show
+    @upload = Upload.find(params[:id])
   end
 
-  # GET /uploads/new
   def new
     @upload = Upload.new
+    3.times {@upload.tags.build}
+    2.times {@upload.protections.build}
   end
 
-  # GET /uploads/1/edit
   def edit
+    @upload = Upload.new
+    3.times {@upload.images.build}
   end
 
-  # POST /uploads
-  # POST /uploads.json
+
   def create
-    @upload = Upload.new(upload_params)
-
-    respond_to do |format|
-      if @upload.save
-        format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
-        format.json { render :show, status: :created, location: @upload }
-      else
-        format.html { render :new }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
-      end
+    @upload = current_user.uploads.build(upload_params)
+    
+    if @upload.save
+      flash[:success] = "Upload was successfully created!"
+      redirect_to @upload
+    else
+      render 'static_pages/home'
     end
-  end
 
-  # PATCH/PUT /uploads/1
-  # PATCH/PUT /uploads/1.json
+  end
+  #@upload = Upload.create(upload_params)
+  #@sharedid = current_user.uploads.build(protections_params) # for shared users
+
+
   def update
-    respond_to do |format|
-      if @upload.update(upload_params)
-        format.html { redirect_to @upload, notice: 'Upload was successfully updated.' }
-        format.json { render :show, status: :ok, location: @upload }
-      else
-        format.html { render :edit }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
-      end
-    end
+
   end
 
-  # DELETE /uploads/1
-  # DELETE /uploads/1.json
   def destroy
     @upload.destroy
     respond_to do |format|
@@ -60,15 +54,49 @@ class UploadsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+    def mysubmission
+    @all_submission = current_user.uploads.all
+    end
+  
+  def sharedToMe
+    data = Array.new
+    data = Protection.pluck(:sharedid,:upload_id)
 
+    previous_upid = 0
+    @shared = Array.new
+    data.each do |(email, upid)|
+      if email == current_user.email && previous_upid != upid
+        @shared << upid
+        previous_upid = upid
+      end
+    end
+
+  end
+  
+  def search
+   #@datas = Upload.where(permission: "Public")
+  if params[:search]
+    @tags = Tag.search(params[:search]).order("created_at DESC")
+    @ids = @tags.pluck(:upload_id)
+
+  end
+  
+  end
+
+  
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_upload
-      @upload = Upload.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def upload_params
-      params.require(:upload).permit(:user_id)
+      params.require(:upload).permit(:description, :permission, :url, 
+                     images_attributes: [:image], tags_attributes: [:tagname], protections_attributes: [:sharedid])
     end
+    
+      def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+  
 end

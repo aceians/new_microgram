@@ -1,90 +1,61 @@
+<!DOCTYPE html>
+
+<<<<<<< HEAD
+<h1>Submission</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@upload, :html => {:multipart => true}) do |f| %>
+
+     <%= f.label :images, "Image Files" %>    
+      <%= f.fields_for :images do |a| %>
+        <% if a.object.new_record? %>
+        <%= a.file_field :image, class: "dropzone", class: 'form-control' %>
+      <% end %>
+      <% end %>
+
+=======
+
+     <%= form_for(@upload, html: { multipart: true}, class: 'dropzone') do |f| %>
+     
+<div class="dz-preview"></div> 
+<div class="fallback">
+<%= f.fields_for :images do |a| %>
+  <%= f.file_field :image, multiple: true %>
+<% end %>
+</div>
+ 
+>>>>>>> jae
+      <%= f.label :tags, "Tags" %> 
+      <%= f.fields_for :tags do |b| %>
+        <% if b.object.new_record? %>
+        <%= b.text_field :tagname, class: 'form-control' %>
+        <% end %>
+      <% end %>
+      
+      
+      
+      <%= f.label :protections, "Users to be shared" %> 
+      <%= f.fields_for :protections do |c| %>
+        <% if c.object.new_record? %>
+        <%= c.text_field :sharedid, class: 'form-control' %>
+        <% end %>
+      <% end %>
+      
+    
+        <%= f.label :permission %>
+        <%= f.collection_select :permission, Upload::PERMISSIONS, :to_s, :to_s, 
+         :include_blank => true, :selected => 'Private', class: 'form-control' %>
+         
+        <%= f.label :url, "URL" %>      
+        <%= f.url_field :url, class: 'form-control' %>
 
 
-<!%= render 'form' %>
+        <%= f.label :Description %>
+        <%= f.text_area :description, placeholder: "Enter description of microstructure(s)", :row => 5, class: 'form-control' %>
 
-<!%= link_to 'Back', uploads_path %>
 
-<html lang="en">
-    
-<head>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-   <br>
-   <br>
-    
-    
-    <div class="container-fluid"  style="padding-left: 0px; padding-right: 0px;">
-      <div class="row">
-        <nav class="col-lg-3">
-            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="0">
-            <li class="active"><%= link_to "New Submission",   new_upload_path %></li>
-            <li><%= link_to "My Submissions",   new_upload_path %></li>
-            <li><%= link_to "Shared with me",   new_upload_path %></li>
-            <li><%= link_to "Search Microgram", uploads_path %></li>
-            </ul>
-        </nav>
-    
-
-        <div class="col-lg-9">
-            <h1 align="center">Share your awesome images !</h1>
-    
-        <br>
-        <div id="content">
-            <%= form_for @upload, html: { multipart: true, class: "dropzone", id: "my-dropzone" } do |f| %>
-            
-                <div class="dz-message needsclick">
-                    <h3> Drop microstructure(s) here</h3> 
-                    or <strong>Click</strong> to upload
-                </div>
-                    
-            
-                <div class="fallback">
-                    <%= f.file_field :image %>
-                    <!%= f.submit "Upload the image" %>
-                </div>
-            <% end %>
-            </div>
-        <br>
-        <br>
-        
-       
-        <div class="container">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label class="control-label col-lg-1" for="tag" align="left">Tags:</label>
-              <div class="col-lg-2">
-                <input type="tag" class="form-control" id="tag" placeholder="Enter a tag"></input>
-              </div>
-              <div class="col-lg-2">
-                <input type="tag" class="form-control" id="tag" placeholder="Enter a tag"></input>
-              </div>
-             <div><span class="glyphicon glyphicon-plus-sign"></span></div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-lg-1" for="description">Description:</label>
-              <div class="col-lg-7">
-                <textarea type="desc" class="form-control" id="desc" placeholder="Enter description of microstructure(s)" rows=5></textarea>
-              </div>
-              
-            </div>
-            <div class="form-group">
-              <label class="control-label col-lg-1" for="url">URL:</label>
-              <div class="col-lg-7">
-                <input type="url" class="form-control" id="url" placeholder="Enter link to research"></input>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-lg-offset-1 col-lg-4">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-            </div>
-        </div>
-
-        </div>
-       </div>
-     </div>
-</body>
-    
-    
-</html>
+      <%= f.button "Submit your images", class: "btn btn-primary" %>
+      
+     <% end %>    
+ 

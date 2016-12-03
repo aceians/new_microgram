@@ -10,36 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112212018) do
+ActiveRecord::Schema.define(version: 20161119180249) do
 
-  create_table "protecteds", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "images", force: :cascade do |t|
+    t.integer  "upload_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["upload_id"], name: "index_images_on_upload_id"
   end
 
-  create_table "submissions", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "img_id"
-    t.string   "permission"
-    t.string   "email"
+  create_table "protections", force: :cascade do |t|
+    t.string   "sharedid"
+    t.integer  "upload_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_protections_on_upload_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer  "sub_id"
-    t.string   "tag_info"
+    t.string   "tagname"
+    t.integer  "upload_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_tags_on_upload_id"
   end
 
   create_table "uploads", force: :cascade do |t|
+    t.text     "description"
+    t.string   "permission"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "url"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["user_id", "created_at"], name: "index_uploads_on_user_id_and_created_at"
+    t.index ["created_at"], name: "index_uploads_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_uploads_on_user_id"
   end
 
@@ -58,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161112212018) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

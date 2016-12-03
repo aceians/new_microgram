@@ -14,8 +14,11 @@ end
 
 group :production do
 gem 'pg', '0.18.1'
+gem 'rails_12factor'
 end
-
+gem 'faker',          '1.6.6'
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -58,7 +61,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 
 
 gem 'paperclip'
