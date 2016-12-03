@@ -1,31 +1,18 @@
 <!DOCTYPE html>
 
-<<<<<<< HEAD
 <h1>Submission</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@upload, :html => {:multipart => true}) do |f| %>
+    <%= form_for(@upload, :html => {:multipart => true, class: "dropzone"}) do |f| %>
 
      <%= f.label :images, "Image Files" %>    
       <%= f.fields_for :images do |a| %>
         <% if a.object.new_record? %>
-        <%= a.file_field :image, class: "dropzone", class: 'form-control' %>
+        <%= a.file_field :image, class: 'form-control' %>
       <% end %>
       <% end %>
 
-=======
-
-     <%= form_for(@upload, html: { multipart: true}, class: 'dropzone') do |f| %>
-     
-<div class="dz-preview"></div> 
-<div class="fallback">
-<%= f.fields_for :images do |a| %>
-  <%= f.file_field :image, multiple: true %>
-<% end %>
-</div>
- 
->>>>>>> jae
       <%= f.label :tags, "Tags" %> 
       <%= f.fields_for :tags do |b| %>
         <% if b.object.new_record? %>
