@@ -1,4 +1,15 @@
-<h1>This is what you just uploaded</h1>
+
+
+<br><br>
+<h3><%= link_to "Back to upload index page", session[:my_previous_url] %></h3>
+<h3><%= link_to "Back to previous page", session[:my_previous_url] %></h4>
+
+<% if session[:my_previous_url] == new_upload_url %>
+  <h1>This is what you just uploaded.</h1>
+<% else %>
+  <h1>This is the image you want to see.</h1>
+<% end %>
+
 <br>
 <% count = 1 %>
 <% @upload.images.all.each do |a| %>

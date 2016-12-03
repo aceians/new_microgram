@@ -17,10 +17,15 @@ User.create!(name:  "Example User",
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@microgram.org"
-  individualrole = "Student"
+  if (n%2 == 0)
+    individualrole = "Student"
+  else
+    individualrole = "Researcher"
+  end
+  
   org = "tamu-#{n+1}"
   dept = "cs-#{n+1}"
-  password = "password"
+  password = "testtest"
 
   User.create!(name:  name,
                email: email,
@@ -31,19 +36,59 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
 
-users = User.order(:created_at).take(80)
-uploads = Upload.order(:created_at).take(10)
-#imageid = "#{email}_#{c+1}"
-#subid = "#{imageid}_#{d+1}"
-#permission1 = "Public"
-#permission2 = "Private"
-#permission3 = "Protected"
-#a=0
-50.times do
-#  a = a+1
-  description = Faker::Lorem.sentence(5)
-  permission = "Public"
-  tag = Faker::Lorem.word
-  users.each { |user| user.uploads.create!(description: description) }
-  uploads.each { |upload| upload.tags.create!(tagname: tag, permission: permission) }
+users = Array.new
+20.times do |a|
+users << User.find(a+1)
 end
+
+temp = 1
+
+2.times do
+users.each do |tuser|
+if (temp%3 == 0)
+    permission = "Public"
+elsif (temp%3 == 1)
+    permission = "Private"
+else
+    permission = "Protected"
+end
+description = Faker::Lorem.sentence
+url = Faker::Internet.url
+user_id = tuser.id
+tuser.uploads.create!(user_id: user_id,
+                  permission: permission,
+                  description: description,
+                  url: url)
+temp = temp + 1
+end
+end
+
+submissions = Array.new
+submissions = Upload.all
+
+submissions.each do |id|
+    5.times do
+        id.images.create!(image: Faker::Avatar.image)
+    end
+    6.times do
+        id.tags.create!(tagname: Faker::Lorem.word)
+    end
+    
+    if id.permission == "Protected"
+    temp2 = 2
+    3.times do
+        if temp2 < 80
+            2.times do
+                id.protections.create!(sharedid: User.find(temp2).email)
+                temp2 = temp2*2
+                temp2 = temp2-1
+            end
+        else
+            temp2 = 1
+        end
+    end
+    end
+
+
+end
+    

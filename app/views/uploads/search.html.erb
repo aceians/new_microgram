@@ -1,0 +1,26 @@
+<body>
+<h1>You can search whatever you want to look for images here.</h1>
+<br>
+<br>
+
+<%= form_tag(uploads_search_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Micrograms" %>
+<%= submit_tag "Search" %>
+<% end %>
+<br>
+<br>
+<% if @tags.present? %>
+    <% @ids.each do |id| %>
+        <% if Upload.find(id).permission == "Public" %>
+            <%= link_to "Image", upload_path(id) %>
+            <%= image_tag Upload.find(id).images.first.image(:small) %>
+        <% end %>
+    <% end %>
+    <%= flash.now[:success] = "Searching was successfully completed!" %>
+<% else %>
+    <%= flash.now[:danger] = "No such images containing the tag" %>
+<% end %>
+
+        
+    
+</body>
