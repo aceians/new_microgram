@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   
   get   '/uploads/mysubmission', to: 'uploads#mysubmission'
   get   '/uploads/sharedtome', to: 'uploads#sharedToMe'
-  get   '/uploads/test', to: 'uploads#test'
-  get   '/images', to: 'uploads#index'
-  post  '/images', to: 'uploads#create'
+  get   '/uploads/search', to: 'uploads#search'
+  post  '/uploads/search', to: 'uploads#search'
 
 
   get  '/signup',  to: 'users#new'
@@ -22,6 +21,6 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :uploads
+  resources :uploads, only: [:new, :create, :update, :destroy, :show, :index]
 
 end

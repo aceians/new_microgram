@@ -6,14 +6,17 @@
     <% if @shared == 0 %>
         <h3> There are no images shared with you! </h3>
     <% else %>
-        <h3> These are the images shared with you! </h3> <br>
+        <h3> Images shared with you! </h3> <br>
         <% @shared.each do |a|%>
             <% user = Upload.find(a).user_id %>
-            <h4><p>below image(s) belong(s) to : <%= User.find(user).email %></p></h4>
+            <h2><p>below image(s) belong(s) to : <%= User.find(user).email %></p></h2>
+            <%= link_to "image #{count}", upload_path(a) %>
+            <% count = count +1 %>
             <% Upload.find(a).images.each do |b| %>
-                 image <%= "#{count}" %><%= image_tag b.image(:small)%>
-                 <% count = count +1 %>
+                 <%= image_tag b.image(:small)%>
             <% end %>
-            <% count = 1 %>
+            <h4>Description</h4>
+            <%= Upload.find(a).description %>
+            <br><br>
         <% end %>
     <% end %>

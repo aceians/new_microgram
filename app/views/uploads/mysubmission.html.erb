@@ -9,12 +9,12 @@
 <% eachone= @all_submission.ids %>
 
 <% eachone.each do |a| %>
-<h2><strong>Submission<%= "#{count}" %></strong></h2>  
+<h2><strong><%= link_to "Submission #{count}", upload_path(a) %></strong></h2>  
 
 
     <h3>Images :</h3>
     <% @all_submission.find(a).images.each do |img| %>
-    Image <%= "#{s_count}" %><%= image_tag img.image(:small) %>
+    <%= image_tag img.image(:small) %>
     <% s_count = s_count + 1 %>
     <% end %>
     <br>
