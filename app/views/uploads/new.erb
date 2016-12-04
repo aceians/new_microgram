@@ -10,7 +10,7 @@
      <%= f.label :images, "Image Files" %>    
       <%= f.fields_for :images do |a| %>
         <% if a.object.new_record? %>
-        <%= a.file_field :image, class: 'form-control' %>
+        <%= a.file_field :image, multiple: true, name: "upload[images_attributes][][image]" %>
       <% end %>
       <% end %>
 

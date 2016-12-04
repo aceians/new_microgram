@@ -16,9 +16,6 @@
             <%= image_tag Upload.find(id).images.first.image(:small) %>
         <% end %>
     <% end %>
-    <%= flash.now[:success] = "Searching was successfully completed!" %>
-<% else %>
-    <%= flash.now[:danger] = "No such images containing the tag" %>
 <% end %>
 
         

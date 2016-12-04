@@ -19,6 +19,7 @@ class UploadsController < ApplicationController
 
   def new
     @upload = Upload.new
+    @upload.images.build
     3.times {@upload.tags.build}
     2.times {@upload.protections.build}
   end

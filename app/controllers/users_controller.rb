@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.wherepaginate(page: params[:page])
   end
     
   def show
@@ -22,8 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "Your account is created."
       redirect_to root_url
     else
       render 'new'
