@@ -31,7 +31,6 @@ class UploadsController < ApplicationController
 
   def create
     @upload = current_user.uploads.build(upload_params)
-    
     if @upload.save
       flash[:success] = "Upload was successfully created!"
       redirect_to @upload
