@@ -19,18 +19,14 @@ $(document).ready(function(){
 
 		  init: function() {
 	 	
-		  	var submitButton = document.querySelector("#new_upload")
+		  	var submitButton = document.querySelector("#sub_button")
 		  	 myDropzone = this; // closure
 			
 		    submitButton.addEventListener("click", function(e) {
 		           myDropzone.processQueue(); 
 		    });
-
-
 		  }
   });	
-
-
 
 
 });

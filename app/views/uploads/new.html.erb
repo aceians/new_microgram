@@ -2,24 +2,13 @@
 
 <h1>Submission</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@upload, :html => {:multipart => true, class: "dropzone"}) do |f| %>
-
-     <%= f.label :images, "Image Files" %>    
-      <%= f.fields_for :images do |a| %>
-        <% if a.object.new_record? %>
-        <%= a.file_field :image, class: 'form-control' %>
-      <% end %>
-      <% end %>
-
+    <%= form_for @upload, :html => {:multipart => true, class: "dropzone"} do |f| %>
       <%= f.label :tags, "Tags" %> 
       <%= f.fields_for :tags do |b| %>
         <% if b.object.new_record? %>
         <%= b.text_field :tagname, class: 'form-control' %>
         <% end %>
       <% end %>
-      
       
       
       <%= f.label :protections, "Users to be shared" %> 
@@ -40,9 +29,9 @@
 
         <%= f.label :Description %>
         <%= f.text_area :description, placeholder: "Enter description of microstructure(s)", :row => 5, class: 'form-control' %>
-
-
-      <%= f.button "Submit your images", class: "btn btn-primary" %>
+        <div style="text-align:center">
+        <%= link_to "Submit your images", @upload, id: "sub_button", class: "btn btn-primary" %>
+        </div>
       
      <% end %>    
  
