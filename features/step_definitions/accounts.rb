@@ -2,9 +2,27 @@ Given(/^I am on the Microgram home page$/) do
     visit "/"
 end
 
+When(/^I go to the Log in page$/) do
+  '/login'
+end
+
+When(/^After logging in, I am on my profile page$/) do
+    '/users/:id'
+end
+
+When(/^After typing the wrong email and password, I should be on the Log in page$/) do
+    '/users/new'
+end
+
+When(/^I should go to signup page$/) do
+   '/signup'
+end
+
+
 When(/^I follow "([^"]*)"$/) do |text|
     page.should have_content(text)
 end
+
 
 Then(/^I should be on the Log in page$/) do
   '/users/new'

@@ -5,10 +5,10 @@ So that I have an account
 
 Scenario: Create an account
 Given I am on the Microgram home page
-When I follow "Log in"
-Then I should be on the Log in page
-And I press "Sign up"
+When I go to the Log in page
+And I should go to signup page
 And After creating, I should be back on the Log in page
+
 
 Scenario: Fill in the wrong form (sad path)
 Given I am on the sign up page

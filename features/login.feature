@@ -5,15 +5,11 @@ So that I can see my data
 
 Scenario: Log in Successfully
 Given I am on the Microgram home page
-When I follow "Log in"
-Then I should be on the Log in page
-And After typing my email and password, I press "Log in"
-And I am on my profile page
+When I go to the Log in page
+And After logging in, I am on my profile page
 
 Scenario: Wrong Log in (sad path)
 Given I am on the Microgram home page
-When I follow "Log in"
-Then I should be on the Log in page
-And After typing the wrong email and password, I press "Log in"
-And I should be on the Log in page 
+When I go to the Log in page
+And After typing the wrong email and password, I should be on the Log in page 
 
