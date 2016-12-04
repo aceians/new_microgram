@@ -1,14 +1,15 @@
+<br>
 <body>
-<h1>You can search whatever you want to look for images here.</h1>
-<br>
-<br>
+<h1 style="text-align:center">Explore Micrograms</h1>
+<div style="text-align:center; margin-top: 50px">
+    <%= form_tag(uploads_search_path, :method => "get", id: "search-form", style:"overflow: auto;") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Micrograms" %>
 
-<%= form_tag(uploads_search_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Micrograms" %>
-<%= submit_tag "Search" %>
-<% end %>
-<br>
-<br>
+    <%= submit_tag "Search", id: "search_btn" %>
+    <img src=<%= asset_path('search_icon.png') %> alt="search" />
+    <% end %>
+</div>
+
 <% if @tags.present? %>
     <% @ids.each do |id| %>
         <% if Upload.find(id).permission == "Public" %>
@@ -16,11 +17,6 @@
             <%= image_tag Upload.find(id).images.first.image(:small) %>
         <% end %>
     <% end %>
-    <%= flash.now[:success] = "Searching was successfully completed!" %>
-<% else %>
-    <%= flash.now[:danger] = "No such images containing the tag" %>
 <% end %>
 
-        
-    
 </body>

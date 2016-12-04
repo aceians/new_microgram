@@ -1,22 +1,27 @@
-<br><br>
-<%= link_to "Back to upload index", uploads_path %>
-<h1>This is the images that are shared with you.</h1>
 <br>
+<h1 style="text-align:center">This is the images that are shared with you.</h1>
+
     <% count = 1 %>
     <% if @shared == 0 %>
         <h3> There are no images shared with you! </h3>
     <% else %>
-        <h3> Images shared with you! </h3> <br>
+       
         <% @shared.each do |a|%>
-            <% user = Upload.find(a).user_id %>
-            <h2><p>below image(s) belong(s) to : <%= User.find(user).email %></p></h2>
-            <%= link_to "image #{count}", upload_path(a) %>
-            <% count = count +1 %>
-            <% Upload.find(a).images.each do |b| %>
-                 <%= image_tag b.image(:small)%>
-            <% end %>
-            <h4>Description</h4>
-            <%= Upload.find(a).description %>
-            <br><br>
+            <div class="col-sm-5 submission_card" style="height:370px; width:420px">        
+                <% user = Upload.find(a).user_id %>
+                <div style="border-bottom:solid; margin:10px">
+                    <p  style="text-align:center; font-size:15px"><%= User.find(user).email %></p>
+                </div>
+                <%#= link_to "image #{count}", upload_path(a) %>
+                <% count = count +1 %>
+                    <div style="text-align:center">
+                        <%= image_tag Upload.find(a).images.first.image(:small)%>
+                    </div>
+                <div style="border-top:solid; margin:10px">
+                    <h4>Description</h4>
+                    <%= Upload.find(a).description %>
+                </div>
+            </div>
+            
         <% end %>
     <% end %>
