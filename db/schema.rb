@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20161119180249) do
     t.integer  "upload_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tagname", "created_at"], name: "index_tags_on_tagname_and_created_at"
     t.index ["upload_id"], name: "index_tags_on_upload_id"
   end
 

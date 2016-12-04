@@ -1,6 +1,7 @@
 class UploadsController < ApplicationController
   before_action :logged_in_user
   after_filter "save_my_previous_url", only: [:new]
+  layout "something"
 
   def save_my_previous_url
     # session[:previous_url] is a Rails built-in variable to save last url.

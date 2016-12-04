@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+		  <% count = 1 %>
+      <% @upload.images.all.each do |a| %>
+      <h4># <%= "#{count}" %> <%= image_tag a.image(:small) %></h4>
+      <% count = count + 1 %>
+      <% end %>
+		</div>
+		<div class="col-md-8" style="width:50%; margin-top: 50px;">
+		  <% count = 1 %>
+      <h4 style="text-align:center"> Permission : <%= @upload.permission %></h4>
+        <div style="border:solid">
+          <ul>
+          <% @upload.tags.all.each do |b| %>
+              <li class="tags">#<%= b.tagname %></li>
+            <% count = count + 1 %>
+          <% end %>
+          </ul>          
+        </div>
+		  <h4> Description : <%= @upload.description %> </h4>
+		</div>
+	</div>
+</div>
+
+
+
+
 
 
 <br><br>

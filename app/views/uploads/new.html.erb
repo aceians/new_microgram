@@ -2,7 +2,16 @@
 
 <h1>Submission</h1>
 
+
     <%= form_for @upload, :html => {:multipart => true, class: "dropzone"} do |f| %>
+     
+      <div class="dz-preview"></div> 
+      <div class="fallback">
+      <%= f.fields_for :images do |a| %>
+        <%= f.file_field :image, multiple: true %>
+      <% end %>
+      </div>
+ 
       <%= f.label :tags, "Tags" %> 
       <%= f.fields_for :tags do |b| %>
         <% if b.object.new_record? %>

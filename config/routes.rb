@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root 'welcome#home'
   get 'password_resets/new'
-
   get 'password_resets/edit'
   
   get   '/uploads/mysubmission', to: 'uploads#mysubmission'
