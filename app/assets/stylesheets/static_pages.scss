@@ -14,6 +14,16 @@ $font_1: Copperplate Gothic Light;
 $font_2: fantasy;
 $font_3: FontAwesome;
 
+.tags {
+		list-style-type:none;
+		font-size:20px;
+		line-height:45px;
+		width:200px;
+		border:solid;
+		display:inline;
+		border-radius:7px;
+}
+
 .paragraph {
 	font-family:"MuseoSlabRegular", serif;
 	font-size:23.5px;
@@ -190,35 +200,35 @@ html {
 }
 .intro-section {
 	height: 100%;
-	padding-top: 120px;
+	padding-top: 100px;
 	text-align: center;
 	background: $white;
 }
 .whatis-section {
 	height: 100%;
-	padding-top: 150px;
-	padding-bottom: 200px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 	text-align: center;
 	background: $white;
 }
 .researcher-section {
 	height: 100%;
-	padding-top: 150px;
-	padding-bottom: 200px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 	text-align: center;
 	background: $white;
 }
 .student-section {
 	height: 100%;
-	padding-top: 150px;
-	padding-bottom: 200px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 	text-align: center;
 	background: $white;
 }
 .aboutus-section {
 	height: 100%;
-	padding-top: 150px;
-	padding-bottom: 500px;
+	padding-top: 100px;
+	padding-bottom: 1000px;
 	text-align: center;
 	background: $white;
 }
