@@ -1,24 +1,25 @@
-<h1>This is what you have uploaded so far.</h1>
 <br>
-<% count = 1 %>
+<br>
+<h1 style="text-align:center">All your awesome submissions.</h1>
+<br>
 
 <% eachone = Array.new %>
 <% eachone= @all_submission.ids %>
 
-
+<br>
+<br>
 <% eachone.each do |a| %>
-    <div class="col-sm-5 submission_card" style="height:370px; width:420px">
-        <h3 style="text-align:center"><strong><%= link_to "Submission #{count}", upload_path(a) %></strong></h3>  
+    <div class="col-sm-5 submission_card" style="height:160px; width:160px">
+  
+
+
+        <p style="text-align:center">
+            <%= link_to(image_tag(@all_submission.find(a).images.first.image(:small)), upload_path(a) ) %></p>
+            <%= @all_submission.find(a).tags.first.tagname %> <br>
+            <font size="1">
+            Created at : <%= @all_submission.find(a).created_at.to_date %>
+            </font>
 
     
-        <p style="text-align:center"><%= image_tag @all_submission.find(a).images.first.image(:small) %></p>
-        
-
-        <div style="border-top:solid; margin:10px;">
-            <h3 style="text-align:center">Description</h3>
-            <%= @all_submission.find(a).description %>
-        </div>
-    
-        <% count = count + 1 %>
     </div>
 <% end %>

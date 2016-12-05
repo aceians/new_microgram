@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
   <title>Microgram</title>
@@ -11,7 +11,7 @@
       <% flash.each do |message_type, message| %>
         <%= message_type %><%= message %>
       <% end %>
-
+<%= render 'layouts/header' %>
 <%= yield %>
 
 </body>

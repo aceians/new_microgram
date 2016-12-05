@@ -1,20 +1,27 @@
+
 <br>
 <body>
-<h1 style="text-align:center">Explore Micrograms</h1>
+<h1 style="text-align:center">Explore Microgram</h1>
 <div style="text-align:center; margin-top: 50px">
     <%= form_tag(uploads_search_path, :method => "get", id: "search-form", style:"overflow: auto;") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Micrograms" %>
-
-    <%= submit_tag "Search", id: "search_btn" %>
-    <img src=<%= asset_path('search_icon.png') %> alt="search" />
+    <%= text_field_tag :search, params[:search], placeholder: "Search Microstructures" %>
+    <br>
+    <%= image_submit_tag (asset_path('search_icon.png', width: "20", height: "20")), id: "search_btn" %>
     <% end %>
 </div>
 
 <% if @tags.present? %>
-    <% @ids.each do |id| %>
+    <% @ids.uniq.each do |id| %>
         <% if Upload.find(id).permission == "Public" %>
-            <%= link_to "Image", upload_path(id) %>
-            <%= image_tag Upload.find(id).images.first.image(:small) %>
+            <div class="col-sm-5 submission_card" style="height:160px; width:160px">
+            <%#= link_to "Image", upload_path(id) %>
+            <%#= image_tag Upload.find(id).images.first.image(:small) %>
+            <%= link_to(image_tag(Upload.find(id).images.first.image(:small)), upload_path(id) ) %>
+            <%= Upload.find(id).tags.first.tagname %> <br>
+            <font size="1">
+            Created at : <%= Upload.find(id).created_at.to_date %>
+            </font>
+            </div>
         <% end %>
     <% end %>
 <% end %>

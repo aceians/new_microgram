@@ -1,26 +1,28 @@
 <br>
-<h1 style="text-align:center">This is the images that are shared with you.</h1>
+<br>
+<br>
+<h1 style="text-align:center">Your collaborators have shared these !</h1>
 
-    <% count = 1 %>
-    <% if @shared == 0 %>
+<br>
+<br>
+<br>
+
+    <% if @shared.nil? %>
         <h3> There are no images shared with you! </h3>
     <% else %>
        
         <% @shared.each do |a|%>
-            <div class="col-sm-5 submission_card" style="height:370px; width:420px">        
+            <div class="col-sm-5 submission_card"  style="height:200px; width:200px">        
                 <% user = Upload.find(a).user_id %>
-                <div style="border-bottom:solid; margin:10px">
-                    <p  style="text-align:center; font-size:15px"><%= User.find(user).email %></p>
-                </div>
-                <%#= link_to "image #{count}", upload_path(a) %>
-                <% count = count +1 %>
+                    
                     <div style="text-align:center">
-                        <%= image_tag Upload.find(a).images.first.image(:small)%>
+                        <%= link_to(image_tag(Upload.find(a).images.first.image(:small)), upload_path(a) ) %>
                     </div>
-                <div style="border-top:solid; margin:10px">
-                    <h4>Description</h4>
-                    <%= Upload.find(a).description %>
-                </div>
+                    <%= Upload.find(a).tags.first.tagname %> <br>
+                    <font size="1">
+                    Shared by: <br>
+                    <%= User.find(user).email %>
+                    </font>
             </div>
             
         <% end %>

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get   '/uploads/sharedtome', to: 'uploads#sharedToMe'
   get   '/uploads/search', to: 'uploads#search'
   post  '/uploads/search', to: 'uploads#search'
+  get   '/uploads/search(.:format)', to: 'upload#search'
+  post  '/uploads/search(.:format)', to: 'upload#search'
 
 
   get  '/signup',  to: 'users#new'
@@ -20,6 +22,6 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :uploads, only: [:new, :create, :update, :destroy, :show, :index]
+  resources :uploads, only: [:new, :create, :update, :destroy, :show, :index, :edit]
 
 end

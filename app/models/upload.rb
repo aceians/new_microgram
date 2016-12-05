@@ -10,4 +10,5 @@ class Upload < ActiveRecord::Base
   PERMISSIONS = ['Public', 'Private', 'Protected']
 
   default_scope -> { order(created_at: :desc) }
+  
 end

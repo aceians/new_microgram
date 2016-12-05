@@ -1,14 +1,7 @@
 class UploadsController < ApplicationController
   before_action :logged_in_user
-  after_filter "save_my_previous_url", only: [:new]
   layout "something"
 
-  def save_my_previous_url
-    # session[:previous_url] is a Rails built-in variable to save last url.
-    session[:my_previous_url] = URI(request.referer || '').path
-  end
-
-  
   def index
     @uploads = Upload.all
   end
@@ -36,7 +29,7 @@ class UploadsController < ApplicationController
       flash[:success] = "Upload was successfully created!"
       redirect_to @upload
     else
-      render 'static_pages/home'
+      render 'uploads_url'
     end
 
   end
@@ -45,7 +38,7 @@ class UploadsController < ApplicationController
 
 
   def update
-
+    @upload = Upload.find(params[:id])
   end
 
   def destroy
@@ -77,14 +70,12 @@ class UploadsController < ApplicationController
   
   def search
    #@datas = Upload.where(permission: "Public")
-  if params[:search]
-    @tags = Tag.search(params[:search]).order("created_at DESC")
-    @ids = @tags.pluck(:upload_id)
-
+    if params[:search]
+      @tags = Tag.search(params[:search]).order("created_at DESC")
+      @ids = @tags.pluck(:upload_id)
+    end
   end
   
-  end
-
   
   private
 
