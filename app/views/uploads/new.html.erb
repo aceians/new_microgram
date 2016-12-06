@@ -10,18 +10,12 @@
      <%= f.label :images, "Image Files" %>    
       <%= f.fields_for :images do |a| %>
         <%# if a.object.new_record? %>
-        <%= a.file_field :image, multiple: true, name: "upload[images_attributes][][image]" %>
+        <%= a.file_field :image, name: "upload[images_attributes][][image]" %>
       <% end %>
-
-      
-      
-        <%= f.label :tags, "Tags" %> 
+    
         <br>
         <%= f.fields_for :tags do |b| %>
           <% if b.object.new_record? %>
-          <div class="col-md-6">
-          <%= b.text_field :tagname, class: 'form-control' %>
-          </div>
           <div class="col-md-6">
           <%= b.text_field :tagname, class: 'form-control' %>
           </div>
