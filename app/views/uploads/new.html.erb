@@ -5,7 +5,7 @@
 <br>
 <br>
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@upload, multipart: true) do |f| %>
+    <%= form_for @upload, :html => { :multipart => true } do |f| %>
 
      <%= f.label :images, "Image Files" %>    
       <%= f.fields_for :images do |a| %>
