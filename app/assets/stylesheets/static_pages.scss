@@ -33,15 +33,18 @@ $font_3: FontAwesome;
 	margin-right:30px;
 }
 
+.tagsss {
+		font-size:20px;
+		line-height:35px;
+}
+
 
 .tags {
 		list-style-type:none;
 		font-size:20px;
-		line-height:45px;
+		line-height:35px;
 		width:200px;
-		border:solid;
 		display:inline;
-		border-radius:7px;
 }
 
 .paragraph {
@@ -78,6 +81,7 @@ $font_3: FontAwesome;
 	display: inline-block;
 }
 .items {
+	color: white;
 	align-items: center;
 	text-align: center;
 	line-height: 7em;

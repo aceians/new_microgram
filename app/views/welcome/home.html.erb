@@ -2,7 +2,7 @@
 
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top this_navbar" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top this_navbar" role="navigation" style="background-color:black;">
         <div class="container">
             <div class="navbar-header page-scroll logo" style="align-items: center;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -11,12 +11,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-header page-scroll logo" href="#page-top" style="text-decoration:none">Microgram</a>
+                <a class="navbar-header page-scroll logo" href="#page-top" style="text-decoration:none; color: white">Microgram</a>
             </div>
             <br>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="color:white">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a class="page-scroll logo" href="#page-top"></a>
@@ -34,15 +34,15 @@
                     <li>
                         <a class="page-scroll items" href="#aboutus">About Us</a>
                     </li>
-                    <li>
+                    
                         <% if logged_in? %>
+                           <li class="items"> <%= link_to "Search Microgram", uploads_search_path %></li>
                            <li> <%= link_to "Log out", logout_path, method: "delete" %></li>
-                           <li> <%= link_to "Search Microgram", uploads_search_path %></li>
                         <% else%>
                           <li>  <%= link_to "Sign up", signup_path %></li>
                           <li>  <%= link_to "Login", login_path %></li>
                         <% end%>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
