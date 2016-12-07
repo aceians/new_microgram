@@ -8,8 +8,11 @@ gem 'bcrypt',         '3.1.11'
 gem 'rails-controller-testing'
 # Use sqlite3 as the database for Active Record
 
-group :development, :test do # 
+group :development, :test do
   gem 'sqlite3'
+  gem 'byebug', platform: :mri
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 group :production do
@@ -47,7 +50,7 @@ gem 'jquery-easing-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+
 end
 
 group :development do

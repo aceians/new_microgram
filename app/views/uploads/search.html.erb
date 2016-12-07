@@ -18,6 +18,7 @@
             <%#= image_tag Upload.find(id).images.first.image(:small) %>
             <%= link_to(image_tag(Upload.find(id).images.first.image(:small)), upload_path(id) ) %>
             <%= Upload.find(id).tags.first.tagname %> <br>
+             <%#= params[:search] %>  
             <font size="1">
             Created at : <%= Upload.find(id).created_at.to_date %>
             </font>

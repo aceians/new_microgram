@@ -12,12 +12,12 @@
     </div>
     <br>
     <div>     
-          <ul>
-            <li class="tags">Tags:  </li>
+          <p>
+            <li class="tags"> Tags:  </li>
           <% @upload.tags.all.each do |b| %>
-              <li class="tags">  <%= link_to b.tagname, uploads_search_path(b.tagname), method: :post %></li>
+              <li class="tags">  <%= link_to b.tagname %></li>
           <% end %>
-          </ul> 
+          </p> 
           
 
     

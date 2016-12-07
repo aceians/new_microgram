@@ -14,6 +14,7 @@
 
 
         <p style="text-align:center">
+        <% if @all_submission.find(a).images.first %>
             <%= link_to(image_tag(@all_submission.find(a).images.first.image(:small)), upload_path(a) ) %></p>
             <% if @all_submission.find(a).tags.first %>
             <%= @all_submission.find(a).tags.first.tagname %> <br>
@@ -21,6 +22,7 @@
             <font size="1">
             Created at : <%= @all_submission.find(a).created_at.to_date %>
             </font>
+        <% end %>
 
     
     </div>

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   get   '/uploads/mysubmission', to: 'uploads#mysubmission'
   get   '/uploads/sharedtome', to: 'uploads#sharedToMe'
   get   '/uploads/search', to: 'uploads#search'
-  post  '/uploads/search', to: 'uploads#search'
-  get   '/uploads/search(.:format)', to: 'upload#search'
-  post  '/uploads/search(.:format)', to: 'upload#search'
+  #post  '/uploads/search', to: 'uploads#search'
+  get   '/uploads/search(.:format)', to: 'uploads#search'
+  post  '/uploads/search(.:format)', to: 'uploads#search'
 
 
   get  '/signup',  to: 'users#new'

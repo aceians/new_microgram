@@ -1,24 +1,12 @@
 
 <% provide(:title, @user.name) %>
-<h1>You are successfully Logged in</h1></center>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <div>
-      </div>
-    </section>
-  </aside>
-    <div class="col-md-8">
-    <% if @user.uploads.any? %>
-      <h3>Images you have uploaded (<%= @user.uploads.count %>)</h3>
-      <ol class="uploads">
-        <%= render @uploads%>
-      </ol>
-      <%= will_paginate @uploads %>
-    <% end %>
-  </div>
+<center><h1>My information</h1></center>
+<br><br><br>
+<div style="text-align: left">
+        <h4>Name : <%= @user.name %></h4><br>
+        <h4>Email : <%= @user.email %></h4><br>
+        <h4>individualrole: <%= @user.individualrole %></h4><br>
+        <h4>Organisation: <%= @user.email %></h4><br>
+        <h4>Department: <%= @user.dept %></h4>
 </div>
+
