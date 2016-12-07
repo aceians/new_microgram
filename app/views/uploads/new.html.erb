@@ -7,15 +7,9 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for @upload, :html => { :multipart => true } do |f| %>
     
-    <%= f.label :image %>
-    <%= f.file_field @upload.images %>
+    <%= f.label :images, "Image Files" %>
+    <%= f.file_field @upload.images.build, multiple: true, name: "upload[images_attributes][][image]", class: 'form-control' %>
 
-     <%= f.label :images, "Image Files" %>    
-      <%= f.fields_for :images do |a| %>
-        <%# if a.object.new_record? %>
-        <%= a.file_field :image, multiple: true, name: "upload[images_attributes][][image]", class: 'form-control' %>
-      <% end %>
-    
         <br>
         <%= f.fields_for :tags do |b| %>
           <% if b.object.new_record? %>
