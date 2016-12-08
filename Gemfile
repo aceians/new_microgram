@@ -22,6 +22,7 @@ end
 gem 'faker',          '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'aws-sdk'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -67,7 +68,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk'
 gem 'dropzonejs-rails'
 
 gem "cucumber"
