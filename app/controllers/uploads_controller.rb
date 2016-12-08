@@ -85,8 +85,8 @@ class UploadsController < ApplicationController
   private
 
     def upload_params
-      params.require(:upload).permit(:description, :permission, :url, 
-                     images_attributes: [:image], tags_attributes: [:tagname], protections_attributes: [:sharedid])
+      params.require(:upload).permit(:id, :description, :permission, :url, 
+                     images_attributes: [:id, :image], tags_attributes: [:id, :tagname], protections_attributes: [:id, :sharedid])
     end
     
       def logged_in_user
