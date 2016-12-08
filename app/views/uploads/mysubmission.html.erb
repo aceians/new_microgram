@@ -14,11 +14,13 @@
 
 
         <p style="text-align:center">
+            <% if (@all_submission.find(a).images.first && @all_submission.find(a).tags.first)  %>
             <%= link_to(image_tag(@all_submission.find(a).images.first.image(:small)), upload_path(a) ) %></p>
             <%= @all_submission.find(a).tags.first.tagname %> <br>
             <font size="1">
             Created at : <%= @all_submission.find(a).created_at.to_date %>
             </font>
+            <% end %>
 
     
     </div>
