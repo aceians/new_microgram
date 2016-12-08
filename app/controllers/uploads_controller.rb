@@ -33,14 +33,12 @@ class UploadsController < ApplicationController
     end
 
   end
-  #@upload = Upload.create(upload_params)
-  #@sharedid = current_user.uploads.build(protections_params) # for shared users
 
 
   def update
     @upload = Upload.find(params[:id])
     if @upload.update_attributes(upload_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Submission is updated"
       redirect_to @upload
     else
       render 'edit'
@@ -86,7 +84,7 @@ class UploadsController < ApplicationController
   private
 
     def upload_params
-      params.require(:upload).permit(:id, :description, :permission, :url, 
+      params.require(:upload).permit(:id, :description, :permission, :url, :image_delete, 
                      images_attributes: [:id, :image], tags_attributes: [:id, :tagname], protections_attributes: [:id, :sharedid])
     end
     

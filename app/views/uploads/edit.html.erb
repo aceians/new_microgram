@@ -5,13 +5,20 @@
   <div class="col-md-6 col-md-offset-1">
     <%= form_for(@upload) do |f| %>
 
-     <%= f.label :images, "Image Files" %>    
-      <%= f.fields_for :images do |a| %>
-        <%= a.file_field :image, multiple: true, name: "upload[images_attributes][][image]" %>
-     
-     <% end %>
+      <% if @upload.images.first %>
+        <% @upload.images.all.each do |b| %>
+          <%= image_tag b.image(:small) %>
+        <% end %>
+        <br><br>
+        <h4> If you want remove all images, Check here <%= f.check_box :image_delete %> </h4>
+        <br>
+        <h4> If you want add additional images, include below </h4>
+        <%= f.file_field @upload.images.build, multiple: true, name: "upload[images_attributes][][image]", class: 'form-control' %>
+      <% else %>
+        <%= f.file_field @upload.images.build, multiple: true, name: "upload[images_attributes][][image]", class: 'form-control' %>
+      <% end %>
+      <br>
 
-      
       
         <%= f.label :tags, "Tags" %> 
         <br>
@@ -22,20 +29,24 @@
           
         <% end %>
       
-      
-      <br>
-      <%= f.label :protections, "Users to be shared" %>
+
+      <div>
+    <%= f.label :protections, "Users to be shared" %>
+    <% if @upload.protections.first %>
       <%= f.fields_for :protections do |c| %>
-        <% if c.object.new_record? %>
         <%= c.email_field :sharedid, class: 'form-control' %>
-        <% end %>
       <% end %>
+    <% else %>
+        <p> Nothing </p>
+    <% end %>
+      </div>
       
-    
+      <div>  
         <%= f.label :permission %>
         <%= f.collection_select :permission, Upload::PERMISSIONS, :to_s, :to_s, 
          :include_blank => true, :selected => 'Private', class: 'form-control' %>
-         
+     </div> 
+     
         <%= f.label :url, "URL" %>      
         <%= f.url_field :url, class: 'form-control' %>
 

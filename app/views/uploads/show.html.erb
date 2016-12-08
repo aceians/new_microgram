@@ -15,7 +15,7 @@
           <p>
             <li class="tags"> Tags:  </li>
           <% @upload.tags.all.each do |b| %>
-              <li class="tags">  <%= link_to b.tagname %></li>
+              <li class="tags">  <%= link_to b.tagname, uploads_search_path(:search => b.tagname) %></li>
           <% end %>
           </p> 
           
