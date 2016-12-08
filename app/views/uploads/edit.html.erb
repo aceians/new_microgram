@@ -1,39 +1,50 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
-
+<% provide(:title, "Edit upload") %>
+<h1 style="margin-left:226px;">Update this upload</h1>
+<br>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+  <div class="col-md-6 col-md-offset-1">
+    <%= form_for(@upload) do |f| %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+     <%= f.label :images, "Image Files" %>    
+      <%= f.fields_for :images do |a| %>
+        <%= a.file_field :image, multiple: true, name: "upload[images_attributes][][image]" %>
+     
+     <% end %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
       
-      <%= f.label :individualrole, "Individual Role" %>
-      <%= f.collection_select :individualrole, User::INDIVIDUAL_ROLES, :to_s, :to_s, 
-       :include_blank => true, :selected => @user.individualrole , class: 'form-control' %>
       
-      <%= f.label :org, "Organisation" %>
-      <%= f.text_field :org, class: 'form-control' %>
+        <%= f.label :tags, "Tags" %> 
+        <br>
+        <%= f.fields_for :tags do |b| %>
+          <div class="col-md-6">
+            <%= b.text_field :tagname, class: 'form-control' %>
+          </div>
+          
+        <% end %>
       
-      <%= f.label :dept, "Department" %>
-      <%= f.text_field :dept, class: 'form-control' %>
+      
+      <br>
+      <%= f.label :protections, "Users to be shared" %>
+      <%= f.fields_for :protections do |c| %>
+        <% if c.object.new_record? %>
+        <%= c.email_field :sharedid, class: 'form-control' %>
+        <% end %>
+      <% end %>
+      
+    
+        <%= f.label :permission %>
+        <%= f.collection_select :permission, Upload::PERMISSIONS, :to_s, :to_s, 
+         :include_blank => true, :selected => 'Private', class: 'form-control' %>
+         
+        <%= f.label :url, "URL" %>      
+        <%= f.url_field :url, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <%= f.label :Description %>
+        <%= f.text_area :description, placeholder: "Enter description of microstructure(s)", :row => 5, class: 'form-control' %>
+        
+        
+      <%= f.submit "Update your submission", class: "btn btn-primary" %>
     <% end %>
-
-    <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">Profile Picture Change</a>
-    </div>
   </div>
 </div>

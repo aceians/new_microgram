@@ -18,7 +18,7 @@ class UploadsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @upload = Upload.find(params[:id])
   end
 
 
@@ -37,10 +37,10 @@ class UploadsController < ApplicationController
 
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    @upload = Upload.find(params[:id])
+    if @upload.update_attributes(upload_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to @upload
     else
       render 'edit'
     end
