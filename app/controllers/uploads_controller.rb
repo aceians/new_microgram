@@ -39,7 +39,7 @@ class UploadsController < ApplicationController
   def update
     @upload = Upload.find(params[:id])
     if @upload.update_attributes(upload_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Submission updated"
       redirect_to @upload
     else
       render 'edit'
