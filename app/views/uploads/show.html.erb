@@ -6,7 +6,7 @@
     <div  style="overflow:auto">   
       <% @upload.images.all.each do |a| %>
     <div class="col-sm-5 submission_card" style="height:160px; width:160px">
-      <%= image_tag a.image(:small) %>
+      <%= image_tag a.image.url(:small) %>
     </div>
       <% end %>
     </div>

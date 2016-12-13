@@ -1,5 +1,15 @@
 Rails.application.configure do
-
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: 's3-us-west-2.amazonaws.com',
+    #url: 's3-us-west-2',
+    s3_credentials: {
+      bucket: "testmicrogram",
+      access_key_id: "AKIAJAWXAPORPHDP3THA", 
+      s3_region: "us-west-2",
+      secret_access_key: "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"
+  }
+  }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -13,13 +23,6 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
-
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
-  host = 'my-project-byoun7529.c9users.io'
-  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-  
 
 
   # Print deprecation notices to the Rails logger.
@@ -44,6 +47,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  Paperclip.options[:image_magick_path] = "/opt/ImageMagick/bin"
-  Paperclip.options[:command_path] = "/opt/ImageMagick/bin"
+  # Paperclip.options[:image_magick_path] = "/opt/ImageMagick/bin"
+  # Paperclip.options[:command_path] = "/opt/ImageMagick/bin"
+  
+
 end
