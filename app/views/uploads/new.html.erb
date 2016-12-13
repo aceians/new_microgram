@@ -11,6 +11,8 @@
     <%= f.file_field @upload.images.build, multiple: true, name: "upload[images_attributes][][image]", class: 'form-control' %>
 
         <br>
+        <%= f.label :tags, "Tags" %>
+        <br>
         <%= f.fields_for :tags do |b| %>
           <% if b.object.new_record? %>
           <div class="col-md-6">
