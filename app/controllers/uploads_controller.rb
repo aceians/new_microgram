@@ -14,7 +14,7 @@ class UploadsController < ApplicationController
     @upload = Upload.new
     #@upload.images.build
     6.times {@upload.tags.build}
-    2.times {@upload.protections.build}
+    3.times {@upload.protections.build}
     
   end
 
